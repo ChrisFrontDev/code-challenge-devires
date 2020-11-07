@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ToDoListContainer = styled.div`
   padding: 16px 0 16px 0;
   overflow-y: auto;
+  max-height: 80vh;
   h3 + div {
     margin-top: 32px;
   }
