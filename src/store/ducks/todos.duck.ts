@@ -1,0 +1,56 @@
+/* eslint-disable */
+import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
+import { RootState, AppThunk } from 'store';
+
+import api from 'services/api';
+
+import { IToDo } from '../../@types/ITodo';
+
+interface State {
+  loading: boolean;
+  error: string | null;
+  todos: IToDo[];
+}
+
+const initialState: State = {
+  loading: false,
+  error: null,
+  todos: [],
+};
+
+const todoSlice = createSlice({
+  name: 'todos',
+  initialState,
+  reducers: {
+    startLoading(state: State) {
+      state.loading = true;
+    },
+    getTodosFail(state: State, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    getAllTodosSuccess(state: State, action: PayloadAction<IToDo[]>) {
+      state.error = null;
+      state.todos = action.payload;
+      state.loading = false;
+    },
+  },
+});
+
+export const { startLoading, getAllTodosSuccess, getTodosFail } = todoSlice.actions;
+
+export default todoSlice.reducer;
+
+export const getAllTodos = (): AppThunk => async (dispatch: Dispatch) => {
+  try {
+    dispatch(startLoading());
+
+    const response = await api.get<IToDo[]>('/todos');
+
+    dispatch(getAllTodosSuccess(response.data));
+  } catch (err) {
+    dispatch(getTodosFail(err.toString()));
+  }
+};
+
+export const todosState = (state: RootState) => state.todosReducer;
