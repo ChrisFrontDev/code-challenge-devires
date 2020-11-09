@@ -13,9 +13,14 @@ export default createGlobalStyle`
     padding:16px;
     color: #FFF;
     -webkit-font-smoothing: antialiased;
+
+  }
+
+  .App{
     display:flex;
     justify-content:center;
   }
+
   body, input, button {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;

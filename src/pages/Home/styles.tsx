@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const HomeContainer = styled.div`
+  flex: 1;
   max-width: 960px;
 
   h1 {
