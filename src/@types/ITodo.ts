@@ -1,5 +1,5 @@
 export interface IToDo {
-  id: string;
+  id: number;
   title: string;
   description: string;
 }
