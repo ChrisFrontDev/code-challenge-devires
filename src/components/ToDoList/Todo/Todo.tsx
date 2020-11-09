@@ -2,14 +2,9 @@ import React from 'react';
 
 import { TodoContainer } from './styles';
 
-interface ToDo {
-  id: string;
-  title: string;
-  description: string;
-}
-
+import { IToDo } from '../../../@types/ITodo';
 interface IProps {
-  todo: ToDo;
+  todo: IToDo;
 }
 
 const Todo: React.FC<IProps> = ({ todo }) => {
