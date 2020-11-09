@@ -59,10 +59,35 @@ export const removeTodo = (id: number): AppThunk => async (dispatch: Dispatch) =
 
     const response = await api.delete(`/todos/${id}`);
 
-    if (response.status !== 200)
+    if (response.status !== 200) {
       throw new Error('Something went wrong. Try Again in few moments');
+    }
 
     const responseAllTodos = await api.get<IToDo[]>('/todos');
+
+    dispatch(getAllTodosSuccess(responseAllTodos.data));
+  } catch (err) {
+    dispatch(getTodosFail(err.toString()));
+  }
+};
+
+export const addTodo = (title: string, description: string): AppThunk => async (
+  dispatch: Dispatch
+) => {
+  try {
+    dispatch(startLoading());
+
+    const response = await api.post<IToDo>('todos', {
+      title,
+      description,
+    });
+
+    if (response.status !== 201) {
+      throw new Error('Something went wrong. Try Again in few moments');
+    }
+
+    const responseAllTodos = await api.get<IToDo[]>('/todos');
+
     dispatch(getAllTodosSuccess(responseAllTodos.data));
   } catch (err) {
     dispatch(getTodosFail(err.toString()));
