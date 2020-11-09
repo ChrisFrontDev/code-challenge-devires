@@ -53,4 +53,20 @@ export const getAllTodos = (): AppThunk => async (dispatch: Dispatch) => {
   }
 };
 
+export const removeTodo = (id: number): AppThunk => async (dispatch: Dispatch) => {
+  try {
+    dispatch(startLoading());
+
+    const response = await api.delete(`/todos/${id}`);
+
+    if (response.status !== 200)
+      throw new Error('Something went wrong. Try Again in few moments');
+
+    const responseAllTodos = await api.get<IToDo[]>('/todos');
+    dispatch(getAllTodosSuccess(responseAllTodos.data));
+  } catch (err) {
+    dispatch(getTodosFail(err.toString()));
+  }
+};
+
 export const todosState = (state: RootState) => state.todosReducer;
