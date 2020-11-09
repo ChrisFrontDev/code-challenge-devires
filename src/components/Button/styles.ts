@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #ff9000;
   height: 56px;
   border-radius: 10px;
@@ -16,5 +19,9 @@ export const Button = styled.button`
 
   &:hover {
     background-color: ${shade(0.2, '#ff9000')};
+  }
+
+  svg {
+    margin-right: 16px;
   }
 `;

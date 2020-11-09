@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { RootState } from 'store';
+
 import { getAllTodos } from 'store/ducks/todos.duck';
 
 import Todo from './Todo/Todo';
 
 import { IToDo } from '../../@types/ITodo';
 
-import { ToDoListContainer, ToDoListTitle } from './styles';
+import { ToDoListContainer } from './styles';
 
 const ToDoList: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,6 @@ const ToDoList: React.FC = () => {
         <h1>LOADING :)</h1>
       ) : (
         <>
-          <ToDoListTitle> TODAY&apos;S TASK </ToDoListTitle>
           {todos.map((todo: IToDo) => (
             <Todo todo={todo} key={todo.id} />
           ))}

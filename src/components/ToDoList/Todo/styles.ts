@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const TodoContainer = styled.div`
+  max-width: 940px;
   display: flex;
   margin: 16px 0 0 0;
   border-radius: 16px;
@@ -11,11 +12,10 @@ export const TodoContainer = styled.div`
   div {
     flex: 1;
   }
-  h2 {
-    font-size: 1.3em;
-    font-weight: 700;
-  }
+
   p {
+    word-break: break-all;
+    white-space: normal;
     opacity: 0.9;
     margin-top: 8px;
     font-weight: 300;

@@ -24,6 +24,18 @@ export default createGlobalStyle`
   h1, h2, h3, strong {
     font-weight: 500;
   }
+
+  h2 {
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+
+  h3{
+    letter-spacing: 0.075em;
+    color: #97b4ff;
+    opacity: 0.8;
+  }
+
   button {
     cursor: pointer;
   }
